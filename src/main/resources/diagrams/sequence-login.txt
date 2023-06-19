@@ -1,0 +1,25 @@
+@startuml
+autonumber
+actor Usuario
+participant Controlador
+participant Servicio
+participant Repositorio
+participant JwtUtil
+
+Usuario -> Controlador : POST /api/login (User)
+activate Controlador
+Controlador -> Servicio : loginUser(User)
+activate Servicio
+Servicio -> Repositorio : findByName(User.name)
+activate Repositorio
+Repositorio --> Servicio : User (found)
+deactivate Repositorio
+Servicio -> JwtUtil : generateToken(User.email)
+activate JwtUtil
+JwtUtil --> Servicio : token
+deactivate JwtUtil
+Servicio --> Controlador : LoginResponse (User, token)
+deactivate Servicio
+Controlador --> Usuario : LoginResponse (User, token)
+deactivate Controlador
+@enduml

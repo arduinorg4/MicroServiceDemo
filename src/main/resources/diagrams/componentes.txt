@@ -1,0 +1,17 @@
+@startuml
+[Usuario] --> [Controlador : UserController]
+[Controlador] --> [Servicio : UserService]
+[Servicio] --> [Repositorio : UserRepository]
+[Servicio] --> [Utilidad : JwtUtil]
+[Repositorio] --> [Base de datos : H2]
+[Utilidad] --> [JWT]
+[Controlador] --> [DTO : UserResponseDTO]
+[Controlador] --> [DTO : LoginResponse]
+[Controlador] --> [DTO : LoginResult]
+[Controlador] --> [DTO : PhoneDTO]
+[Controlador] --> [Modelo : User]
+[Controlador] --> [Modelo : Phone]
+[Controlador] --> [Controlador de Excepciones : GlobalExceptionHandler]
+[Controlador] --> [Codificador : BCryptPasswordEncoder]
+
+@enduml

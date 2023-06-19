@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +27,7 @@ public class User {
     private String email;
 
     @NotBlank(message = "Password is mandatory")
-    @Size(min = 1, max = 12, message = "Password must be between 8 and 12 characters")
+    //@Size(min = 1, max = 12, message = "Password must be between 8 and 12 characters")
     private String password;
     private boolean isActive;
     private String token;

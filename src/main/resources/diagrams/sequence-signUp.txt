@@ -1,0 +1,30 @@
+@startuml
+autonumber
+actor Usuario
+participant Controlador
+participant Servicio
+participant Repositorio
+participant "Base de datos"
+participant JwtUtil
+
+Usuario -> Controlador : POST /api/sign-up (User)
+activate Controlador
+Controlador -> Servicio : createUser(User)
+activate Servicio
+Servicio -> Repositorio : save(User)
+activate Repositorio
+Repositorio -> "Base de datos" : save(User)
+activate "Base de datos"
+"Base de datos" --> Repositorio : User (saved)
+deactivate "Base de datos"
+Repositorio --> Servicio : User (saved)
+deactivate Repositorio
+Servicio -> JwtUtil : generateToken(User.email)
+activate JwtUtil
+JwtUtil --> Servicio : token
+deactivate JwtUtil
+Servicio --> Controlador : UserResponseDTO (incluye token)
+deactivate Servicio
+Controlador --> Usuario : UserResponseDTO (incluye token)
+deactivate Controlador
+@enduml

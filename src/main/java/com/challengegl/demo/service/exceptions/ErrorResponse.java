@@ -4,8 +4,6 @@ public class ErrorResponse {
     private String message;
     private int status;
 
-    // Getters and setters
-
     public String getMessage() {
         return message;
     }
