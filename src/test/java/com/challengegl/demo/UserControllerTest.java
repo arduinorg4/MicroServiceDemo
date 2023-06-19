@@ -31,7 +31,7 @@ public class UserControllerTest {
     public void testSignUp() throws Exception {
         UserResponseDTO user = new UserResponseDTO();
         user.setId(UUID.randomUUID());
-        user.setToken("asdfasdf");
+        user.setToken(UUID.randomUUID().toString());
 
         when(userService.createUser(any(User.class))).thenReturn(user);
 
