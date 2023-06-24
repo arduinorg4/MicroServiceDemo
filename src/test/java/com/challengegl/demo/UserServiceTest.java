@@ -1,7 +1,7 @@
 package com.challengegl.demo;
 
 import com.challengegl.demo.dto.UserResponseDTO;
-import com.challengegl.demo.model.User;
+import com.challengegl.demo.entity.User;
 import com.challengegl.demo.repository.UserRepository;
 import com.challengegl.demo.service.UserService;
 import org.junit.jupiter.api.Test;

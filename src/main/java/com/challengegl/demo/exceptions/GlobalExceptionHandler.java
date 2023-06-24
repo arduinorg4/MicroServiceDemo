@@ -1,4 +1,4 @@
-package com.challengegl.demo.controller;
+package com.challengegl.demo.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

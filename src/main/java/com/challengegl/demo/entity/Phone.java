@@ -1,4 +1,4 @@
-package com.challengegl.demo.model;
+package com.challengegl.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

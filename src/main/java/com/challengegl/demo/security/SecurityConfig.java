@@ -14,14 +14,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/sign-up").permitAll() // permitir solicitudes no autenticadas a /sign-up
-                .antMatchers("/api/login").permitAll() // permitir solicitudes no autenticadas a /sign-up
-                .antMatchers("/h2-console/**").permitAll() // permitir solicitudes no autenticadas a /h2-console
-                .anyRequest().authenticated() // cualquier otra solicitud requiere autenticación
+                .antMatchers("/api/sign-up"
+                        , "/api/login"
+                        , "/h2-console/**"
+                        , "/swagger-ui.html"
+                        , "/v2/api-docs"
+                        , "/webjars/**"
+                        , "/swagger-resources/**"
+                        , "/configuration/ui"
+                        , "/configuration/security"
+                        ,"/swagger-ui.html#/").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
-                .headers().frameOptions().sameOrigin(); // permitir el uso de frames para la misma URL de origen (necesario para H2 console)
+                .headers().frameOptions().sameOrigin();
     }
 
     @Bean
@@ -29,3 +36,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
+

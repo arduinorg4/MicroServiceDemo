@@ -3,7 +3,7 @@ package com.challengegl.demo.controller;
 import com.challengegl.demo.dto.LoginResponse;
 import com.challengegl.demo.dto.LoginResult;
 import com.challengegl.demo.dto.UserResponseDTO;
-import com.challengegl.demo.model.User;
+import com.challengegl.demo.entity.User;
 import com.challengegl.demo.service.UserService;
 import com.challengegl.demo.service.exceptions.ErrorResponse;
 import com.challengegl.demo.service.exceptions.InvalidCredentialsException;

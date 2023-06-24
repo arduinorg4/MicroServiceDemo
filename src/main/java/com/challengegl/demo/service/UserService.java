@@ -3,38 +3,32 @@ package com.challengegl.demo.service;
 import com.challengegl.demo.dto.LoginResult;
 import com.challengegl.demo.dto.PhoneDTO;
 import com.challengegl.demo.dto.UserResponseDTO;
-import com.challengegl.demo.model.Phone;
-import com.challengegl.demo.model.User;
+import com.challengegl.demo.entity.Phone;
+import com.challengegl.demo.entity.User;
 import com.challengegl.demo.repository.UserRepository;
 import com.challengegl.demo.service.exceptions.InvalidCredentialsException;
 import com.challengegl.demo.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserService(UserRepository userRepository, JwtUtil jwtUtil, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.jwtUtil = jwtUtil;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public UserResponseDTO createUser(User user) {
         user.setCreated(LocalDate.now().toString());
         user.setLastLogin(LocalDate.now().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setToken(jwtUtil.generateToken(user.getEmail()));
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.saveAndFlush(user);
         return convertToDTO(savedUser);
     }
 
