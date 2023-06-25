@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone, Long> {
-    // Aquí puedes agregar métodos personalizados si es necesario
 }
